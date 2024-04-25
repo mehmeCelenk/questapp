@@ -3,8 +3,6 @@ package com.app.quest.controller;
 import com.app.quest.model.request.LikeCreateRequest;
 import com.app.quest.model.response.LikeResponse;
 import com.app.quest.service.LikeService;
-import com.app.quest.service.PostService;
-import com.app.quest.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -24,7 +22,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/v1/questapp/like")
 public class LikeController {
-    @Lazy
     private final LikeService likeService;
 
 

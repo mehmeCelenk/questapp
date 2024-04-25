@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
+
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.OnDelete;
@@ -22,7 +22,7 @@ public class Comment {
     @Column(name = "id")
     private Long id;
 
-    @Lob
+
     @Column(columnDefinition = "text")
     private String text;
 
@@ -37,4 +37,48 @@ public class Comment {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Post post;
+
+
+    public Comment(Long id, String text, Post post, User user) {
+        this.id = id;
+        this.text = text;
+        this.post = post;
+        this.user = user;
+    }
+
+    public Comment(){
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }

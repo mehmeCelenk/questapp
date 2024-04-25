@@ -29,7 +29,7 @@ public class PostController {
     private final PostService postService;
 
 
-    public PostController(PostService postService, UserService userService, LikeService likeService) {
+    public PostController(PostService postService) {
         this.postService = postService;
 
     }
