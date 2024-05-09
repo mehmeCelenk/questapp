@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  questapp:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "8081:8081"
+      networks:
+        - spring-boot-network
+      environment:
+        Jwt_Token: ${JWT_TOKEN}
+      env_file:
+        - .env
+      depends_on:
+        - postgres
+  rabbitmq:
+    image: rabbitmq:3.8.22
+    hostname: my_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - spring-boot-network
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - spring-boot-network
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 65263
+      POSTGRES_DB: questapp
+
+networks:
+  spring-boot-network:
+    driver: bridge

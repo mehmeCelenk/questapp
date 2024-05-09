@@ -7,8 +7,6 @@ import com.app.quest.model.entity.User;
 import com.app.quest.model.response.LikeResponse;
 import com.app.quest.repository.LikeRepository;
 
-import com.app.quest.repository.PostRepository;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +39,7 @@ public class LikeService {
 
     public LikeResponse getById(Long id){
         Like like = findById(id);
-        return LikeResponse.convert(like.getUser().getUUID(), like.getPost().getId());
+        return LikeResponse.convert(like);
     }
 
     public LikeResponse createLike(String userId, Long postId) {
@@ -54,7 +52,7 @@ public class LikeService {
             like.setUser(user);
 
             likeRepository.save(like);
-            return LikeResponse.convert(like.getUser().getUUID(), like.getPost().getId());
+            return LikeResponse.convert(like);
         } else {
             throw new NotFoundException("User not found or Post not found");
         }

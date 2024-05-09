@@ -29,7 +29,7 @@ public class PostService {
     }
 
 
-    public List<PostResponse> getAll(Optional<String> userId){
+   public List<PostResponse> getAll(Optional<String> userId){
         List<Post> list;
         if(userId.isPresent()){
             list = this.postRepository.findByUserUUID(userId.get());
@@ -38,8 +38,11 @@ public class PostService {
         }
         return list.stream().map(post -> {
             List<LikeResponse> likes = likeService.getAllLikesWithParam(Optional.ofNullable(null), Optional.of(post.getId()));
-            return PostResponse.convert(post,likes);}).collect(Collectors.toList());
+            return PostResponse.convert(post, likes);}).collect(Collectors.toList());
     }
+
+
+
 
 
     public PostResponse createPost(PostCreateRequest createRequest){

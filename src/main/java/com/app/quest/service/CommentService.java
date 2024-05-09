@@ -50,7 +50,7 @@ public class CommentService {
 
             commentRepository.save(comment);
 
-            return CommentResponse.convert(comment.getText(), comment.getUser().getUUID(), comment.getPost().getId());
+            return CommentResponse.convert(comment);
         }
 
          throw new NotFoundException("Comment not found or Post not found, or User Not found");
@@ -64,7 +64,7 @@ public class CommentService {
             comment.setText(commentUpdateRequst.text());
 
             commentRepository.save(comment);
-            return CommentResponse.convert(comment.getText(), comment.getUser().getUUID(), comment.getPost().getId());
+            return CommentResponse.convert(comment);
         }
 
         throw new NotFoundException("Comment not found");

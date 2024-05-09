@@ -3,6 +3,7 @@ package com.app.quest.controller;
 import com.app.quest.model.request.UserCreateRequest;
 import com.app.quest.model.request.UserUpdateRequest;
 import com.app.quest.model.response.UserResponse;
+import com.app.quest.service.AuthService;
 import com.app.quest.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -25,24 +26,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     @Transactional
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserCreateRequest userCreate) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userCreate));
     }
 
-    @PutMapping()
+    @PutMapping("/update")
     @Transactional
     public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UserUpdateRequest userUpdate) {
         return ResponseEntity.ok(userService.update(userUpdate));
     }
 
-    @GetMapping("{uuid}")
+    @GetMapping("/{uuid}")
     public ResponseEntity<UserResponse> getUserId(String uuid) {
         return ResponseEntity.ok(userService.getByUser(uuid));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(String uuid) {
         userService.delete(uuid);
     }

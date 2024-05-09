@@ -29,24 +29,24 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}/getall")
     public ResponseEntity<List<CommentResponse>> getAll(@RequestParam Optional<String> userId, @RequestParam Optional<Long> postId){
         return ResponseEntity.ok(commentService.getAll(userId,postId));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @Transactional
     public ResponseEntity<CommentResponse> createComent(@Valid @RequestBody CommentCreateRequest commentCreateRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.createComment(commentCreateRequest));
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @Transactional
     public ResponseEntity<CommentResponse> updateComment(@Valid @RequestBody CommentUpdateRequst commentUpdateRequst){
         return ResponseEntity.ok(commentService.updateComment(commentUpdateRequst));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteComment(Long id){
         commentService.deleteComment(id);
     }

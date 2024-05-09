@@ -29,23 +29,23 @@ public class LikeController {
         this.likeService = likeService;
     }
 
-    @GetMapping
+    @GetMapping("/getall")
     public ResponseEntity<List<LikeResponse>> getAllLikes(@RequestParam Optional<String> userId, @RequestParam Optional<Long> postId) {
         return ResponseEntity.ok(likeService.getAllLikesWithParam(userId, postId));
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<LikeResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(likeService.getById(id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @Transactional
     public ResponseEntity<LikeResponse> createLike(@RequestBody LikeCreateRequest createRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(likeService.createLike(createRequest.userId(), createRequest.postId()));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteLike(@PathVariable long id) {
         likeService.deleteLike(id);
     }

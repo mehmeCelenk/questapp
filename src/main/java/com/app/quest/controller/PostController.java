@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,25 +35,25 @@ public class PostController {
 
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<List<PostResponse>> getAllPosts(Optional<String> id) {
-        return ResponseEntity.ok(postService.getAll(id));
+    @GetMapping("getall/{userId}")
+    public ResponseEntity<List<PostResponse>> getAllPosts(@RequestParam Optional<String> userId) {
+        return ResponseEntity.ok(postService.getAll(userId));
     }
 
 
-    @PostMapping
+    @PostMapping("/create")
     @Transactional
     public ResponseEntity<PostResponse> createPost(@Valid @RequestBody PostCreateRequest createRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(createRequest));
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @Transactional
     public ResponseEntity<PostResponse> updatePost(@Valid @RequestBody PostUpdateRequest updateRequest) {
         return ResponseEntity.ok(postService.UpdatePost(updateRequest));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}/delete")
     public void deletePostById(@PathVariable Long id) {
         postService.deletePost(id);
     }
