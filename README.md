@@ -1,8 +1,9 @@
 QuestApp
 
-Açıklama
 
-QuestApp, kullanıcıların sorular sormasına, cevaplar almasına, cevaplara yorum yapmasına ve beğenmesine olanak tanıyan bir web sitesidir.
+QuestApp, 
+
+kullanıcıların sorular sormasına, cevaplar almasına, cevaplara yorum yapmasına ve beğenmesine olanak tanıyan bir web sitesidir.
 
 Kullanılan Teknolojiler
 
@@ -16,7 +17,9 @@ Kullanılan Teknolojiler
 
 Kurulum
 
-Projenin çalıştırılabilmesi için Docker Compose kullanılmıştır. Aşağıdaki adımları izleyerek projeyi başlatabilirsiniz:
+Projenin çalıştırılabilmesi için Docker Compose kullanılmıştır. 
+
+Aşağıdaki adımları izleyerek projeyi başlatabilirsiniz:
 
 1. Proje dosyalarını indirin veya klonlayın.
 
@@ -27,4 +30,4 @@ Projenin çalıştırılabilmesi için Docker Compose kullanılmıştır. Aşağ
 ```bash
 docker-compose up
 ```
-Bu komut, projenin tüm bileşenlerini (Java uygulaması, PostgreSQL veritabanı, web sunucusu) başlatır.
+Bu komut, projenin tüm bileşenlerini (Java uygulaması, PostgreSQL veritabanı, Rabbitmq, web sunucusu) başlatır.
