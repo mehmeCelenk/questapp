@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/questapp
-    username: postgres
-    password: 65263
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -22,12 +22,11 @@ spring:
           starttls:
             enable: true
   rabbitmq:
-    host: localhost
+    host: my_rabbitmq
     port: 5672
     username: guest
     password: guest
     virtual-host: /
-
   sample:
     rabbitmq:
       exchange: default

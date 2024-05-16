@@ -8,38 +8,47 @@ services:
       ports:
         - "8081:8081"
       networks:
-        - spring-boot-network
+        - questapp-network
       environment:
-        Jwt_Token: ${JWT_TOKEN}
+        - DATABASE_URL=jdbc:postgresql://postgres:5432/questapp
+        - DATABASE_USERNAME=postgres
+        - DATABASE_PASSWORD=65263
       env_file:
         - .env
       depends_on:
         - postgres
   rabbitmq:
-    image: rabbitmq:3.8.22
+    image: rabbitmq:3-management
     hostname: my_rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - spring-boot-network
+      - questapp-network
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - ./rabbitmq-config:/etc/rabbitmq
+
 
   postgres:
     image: postgres:latest
-    container_name: my_postgres
+    container_name: postgres
     restart: always
     ports:
       - "5432:5432"
     networks:
-      - spring-boot-network
+      - questapp-network
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 65263
       POSTGRES_DB: questapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata: {}
 
 networks:
-  spring-boot-network:
+  questapp-network:
     driver: bridge

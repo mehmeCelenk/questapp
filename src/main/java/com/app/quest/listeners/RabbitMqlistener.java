@@ -1,4 +1,4 @@
-package com.app.quest.config;
+package com.app.quest.listeners;
 
 import com.app.quest.event.UserCreateEvent;
 import com.app.quest.service.EmailService;
