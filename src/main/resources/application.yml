@@ -14,7 +14,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: questappnotification@gmail.com
-    password: moenbeannfcicxqp
+    password: 
     properties:
       mail:
         smtp:
